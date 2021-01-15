@@ -21,3 +21,29 @@ It is pretty simple to setup:
 5.) sudo service apache2 restart //restart apache2
 
 6.) Visit the page from 2 different locations to verify - mobile or desktop, to see if it bounces correctly!
+
+
+Keynotes:
+We can use a number of attributes for the mod_rewrite setup on the user:
+%{HTTP_USER_AGENT}
+%{HTTP_REFERRER}
+%{HTTP_COOKIE}
+%{HTTP_FORWARDED}
+%{HTTP_HOST}
+%{HTTP_PROXY_CONNECTION}
+%{HTTP_ACCEPT}
+
+We can do host identification:
+%{QUERY_STRING} //using os_id=X, where X=the system, e.g. os-id=mac
+
+
+We also have flexibility for attributes on the server side/requests:
+%{REQUEST_URI}
+%{QUERY_STRING}
+%{HTTP_ACCEPT}
+%{HTTPS}
+%{REQUEST_FILENAME}
+%{REMOTE_ADDRESS}
+%{REMOTE_HOST}
+%{REMOTE_PORT}
+%{PATH_INFO}
