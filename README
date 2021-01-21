@@ -11,7 +11,7 @@ It is pretty simple to setup:
     RewriteCond %{HTTP_USER_AGENT} "iphone|ipod|opera mobile" [NC] //if the user is mobile
     RewriteRule ^index.html$ http://your_page/index2.html //push to this page instead
     
-4.) sudo nano /etc/apache2/sites-available/default //add the following to allow htaccess to be used to rewrite
+4.) sudo nano /etc/apache2/sites-enabled/default //add the following to allow htaccess to be used to rewrite
      <Directory /var/www/>
                 Options Indexes FollowSymLinks MultiViews
                 AllowOverride All
