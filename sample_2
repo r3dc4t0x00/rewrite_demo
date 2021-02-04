@@ -1,0 +1,12 @@
+RewriteEngine On
+#for inverse, as in not in this range..
+RewriteCond %{REMOTE_ADDR} !^192\.168\.1\.
+#bounce them out
+RewriteRule ^.*$ http://somesite.com? [L,R=302]
+
+#if we want to serve a file
+RewriteRule ^thing/?$ stuff.thing [L,NC]
+
+#so in theory, a user isnt in the range? they get bounced... if they are in range and request our special trigger of thing? they get served the file
+
+Source: https://bluescreenofjeff.com/2016-04-12-combatting-incident-responders-with-apache-mod_rewrite/
